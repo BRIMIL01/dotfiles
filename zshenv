@@ -13,7 +13,10 @@ export GEM_EDITOR="vim"
 export BUNDLER_EDITOR="vim"
 
 export DSE_HOME="/opt/local/dse-2.2.1"
-export DOCKER_HOST="tcp://"
+
+export DOCKER_TLS_VERIFY=1
+export DOCKER_HOST=tcp://192.168.59.103:2376
+export DOCKER_CERT_PATH=/Users/brian.miller/.boot2docker/certs/boot2docker-vm
 
 # Bundle aliases
 alias be='bundle exec'
@@ -54,6 +57,7 @@ alias sonar_start="/usr/local/opt/sonar/bin/sonar console"
 
 alias nova-dist="nova --os-tenant-name IPT-coresvcs"
 alias nova-cpi="nova --os-tenant-name CPI"
+alias nova-software="nova --os-tenant-name Software"
 
 export AWS_CREDENTIALS_FILE=~/.aws-credentials
 export JAVA_HOME="$(/usr/libexec/java_home)"
@@ -118,6 +122,14 @@ function build_changelog() {
 
 function cow_norris() {
   curl -s http://api.icndb.com/jokes/random | ruby -e "require 'json'; require 'cgi'; puts \"http://cowsay.morecode.org/say?format=text&message=#{CGI.escape(JSON.parse(gets)['value']['joke'])}\"" | xargs curl
+}
+
+function map_boot2docker() {
+  # vm must be powered off
+  for i in {49000..49900}; do
+   VBoxManage modifyvm "boot2docker-vm" --natpf1 "tcp-port$i,tcp,,$i,,$i";
+   VBoxManage modifyvm "boot2docker-vm" --natpf1 "udp-port$i,udp,,$i,,$i";
+  done
 }
 
 source ~/.dotfiles/zshlocal

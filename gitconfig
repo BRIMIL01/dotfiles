@@ -1,0 +1,20 @@
+[user]
+	name = Brian Miller
+	email = brian.miller@reachlocal.com
+[color]
+  ui = true
+[core]
+	excludesfile = /Users/brian.miller/.gitignore_global
+  autocrlf = input
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /opt/homebrew-cask/Caskroom/sourcetree/1.9.3.1/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[github]
+  user = BRIMIL01
+[alias]
+  last = log -1 HEAD
+  wip = !git stash save "wip: $(date)"
+  l = log --graph --abbrev-commit --date=relative --pretty=format:\"%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset\"

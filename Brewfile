@@ -22,25 +22,30 @@ brew install ruby-build
 brew install phantomjs
 brew install nmap
 brew install maven
-brew install tmux 
+brew install tmux
 brew install reattach-to-user-namespace
 brew install tomcat
 brew install jetty
 brew install seige
 brew install node
 brew install nvm
+brew install jenv
+brew install scala
 brew install pwgen
+brew install dnsmasq
+brew install docker
+brew install sqlite3
 
 brew install hadoop
 brew install hive
 brew install pig
-brew install hbase
 brew install sqoop
 brew install zookeeper
 brew install avro-tools
 brew install apache-spark
 
 brew install brew-cask
+brew cask install dropbox
 brew cask install sublime-text
 brew cask install navicat-premium
 brew cask install sourcetree
@@ -67,7 +72,10 @@ brew cask install fantastical
 brew cask install alfred
 brew cask install apache-directory-studio
 brew cask install amazon-cloud-drive
-brew cask install amazon-cloud-player
-brew cask install dropbox
 brew cask install screenhero
 brew cask install tower
+brew cask install rdm
+brew cask install slack
+brew cask install cloudfoundry-cli
+brew cask install github
+brew cask install arq

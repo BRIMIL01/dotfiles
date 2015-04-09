@@ -34,7 +34,7 @@ zstyle :omz:plugins:ssh-agent agent-forwarding on
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git git-extras cap ruby gem rails rbenv git-flow brew ssh-agent encode64 grails)
+plugins=(git git-extras cap ruby gem rails rbenv git-flow brew ssh-agent encode64 grails docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -60,9 +60,15 @@ stty -ixon
 #THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
 [[ -s "/Users/brian.miller/.gvm/bin/gvm-init.sh" ]] && source "/Users/brian.miller/.gvm/bin/gvm-init.sh"
 
+if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+
 export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 export NVM_DIR="/Users/brian.miller/.nvm"
 source $(brew --prefix nvm)/nvm.sh
 
+eval `boot2docker shellinit 2>/dev/null`
+
+# added by travis gem
+[ -f /Users/brian.miller/.travis/travis.sh ] && source /Users/brian.miller/.travis/travis.sh
