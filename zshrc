@@ -29,7 +29,7 @@ ZSH_THEME="simple"
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
 
-zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_home id_rsa_vsa stacked_key tmuxme_rsa 
+zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_home id_rsa_vsa stacked_key tmuxme_rsa
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -62,10 +62,8 @@ stty -ixon
 
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
-export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-export NVM_DIR="/Users/brian.miller/.nvm"
 source $(brew --prefix nvm)/nvm.sh
 
 eval `boot2docker shellinit 2>/dev/null`

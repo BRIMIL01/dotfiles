@@ -18,6 +18,7 @@ brew install elinks
 brew install erlang
 brew install ffmpeg
 brew install imagemagick
+brew install rbenv
 brew install ruby-build
 brew install phantomjs
 brew install nmap
@@ -45,6 +46,8 @@ brew install avro-tools
 brew install apache-spark
 
 brew install brew-cask
+brew cask install java
+brew cask install caskroom/homebrew-versions/java6
 brew cask install dropbox
 brew cask install sublime-text
 brew cask install navicat-premium
@@ -79,3 +82,4 @@ brew cask install slack
 brew cask install cloudfoundry-cli
 brew cask install github
 brew cask install arq
+brew cask install gpgtools

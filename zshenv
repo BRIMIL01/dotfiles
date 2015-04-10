@@ -1,10 +1,14 @@
 PATH=$HOME/bin:/usr/local/sbin:/usr/local/bin:$PATH
 PATH=$PATH:/opt/local/dse-2.2.1/bin:/opt/local/opscenter-2.1.2/bin
-PATH=$PATH:$HOME/Library/Python/2.7/bin:/usr/local/share/npm/bin
+PATH=$PATH:$HOME/Library/Python/2.7/bin:/usr/local/share/npm/bin:$HOME/.jenv/bin
 PATH=$PATH:/Applications/VMware\ Fusion.app/Contents/Library:/Applications/VirtualBox.app/Contents/MacOS
+
+export RBENV_ROOT="/usr/local/var/rbenv"
+export NVM_DIR="/Users/brian.miller/.nvm"
 
 export MANPATH=/usr/local/man:/opt/local/man:$MANPATH
 
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export RUBY_CONFIGURE_OPTS="--without-gcc --disable-install-rdoc"
 
 export EDITOR="vim"
@@ -65,9 +69,6 @@ export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pk-*.pem | /usr/bin/head -1)"
 export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem | /usr/bin/head -1)"
 export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars"
 
-export SONAR_RUNNER_HOME=/usr/local/opt/sonar-runner/libexec
-
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 export HADOOP_HOME=/usr/local/opt/hadoop/libexec
 export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
@@ -88,16 +89,20 @@ function test_for_pull() {
   echo "$prev_tests\nCucumber\n\n\`\`\`\n$cukes\n\`\`\`\n\nSpecs\n\n\`\`\`\n$specs\n\`\`\`\n" | pbcopy
 }
 
+function osx_java_home() {
+  /usr/libexec/java_home
+}
+
 function set_java6() {
-  export JAVA_HOME=`/usr/libexec/java_home -v 1.6`
+  jenv shell 1.6
 }
 
 function set_java7() {
-  export JAVA_HOME=`/usr/libexec/java_home -v 1.7.0`
+  jenv shell 1.7
 }
 
 function set_java8() {
-  export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+  jenv shell 1.8
 }
 
 function start_cassandra() {
@@ -134,5 +139,5 @@ function map_boot2docker() {
 
 source ~/.dotfiles/zshlocal
 
-set_java8
+# set_java8
 
