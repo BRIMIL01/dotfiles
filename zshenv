@@ -72,6 +72,7 @@ export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars"
 
 export HADOOP_HOME=/usr/local/opt/hadoop/libexec
 export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export AKKA_HOME=/usr/local/Cellar/akka/2.3.9/libexec
 
 # export VAGRANT_DEFAULT_PROVIDER="vmware_fusion"
 export VAGRANT_DEFAULT_PROVIDER="virtualbox"
