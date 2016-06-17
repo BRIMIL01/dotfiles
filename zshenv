@@ -6,7 +6,7 @@ PATH=$PATH:/Applications/VMware\ Fusion.app/Contents/Library:/Applications/Virtu
 export RBENV_ROOT="/usr/local/var/rbenv"
 export NVM_DIR="/Users/brian.miller/.nvm"
 
-export MANPATH=/usr/local/man:/opt/local/man:$MANPATH
+export MANPATH=/usr/local/man:/opt/local/man:/usr/local/opt/erlang/lib/erlang/man:$MANPATH
 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export RUBY_CONFIGURE_OPTS="--without-gcc --disable-install-rdoc"
@@ -17,10 +17,6 @@ export GEM_EDITOR="vim"
 export BUNDLER_EDITOR="vim"
 
 export DSE_HOME="/opt/local/dse-2.2.1"
-
-export DOCKER_TLS_VERIFY=1
-export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=/Users/brian.miller/.boot2docker/certs/boot2docker-vm
 
 # Bundle aliases
 alias be='bundle exec'
@@ -34,7 +30,7 @@ alias z="zeus"
 alias ztr="z test spec"
 alias zc="z cucumber"
 
-alias vi="/usr/local/bin/vim"
+#alias vi="/usr/local/bin/vim"
 alias animals="curl -s http://animals.ivolo.me/"
 alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
 alias pull="git branch | grep \"*\" | sed \"s/* //\" | xargs -I '{}' git pull origin '{}':'{}' && fact"
@@ -59,19 +55,16 @@ alias mongo_start="mongod run --config /usr/local/etc/mongod.conf"
 alias jenkins="java -jar /usr/local/opt/jenkins/libexec/jenkins.war"
 alias sonar_start="/usr/local/opt/sonar/bin/sonar console"
 
-alias nova-dist="nova --os-tenant-name IPT-coresvcs"
-alias nova-cpi="nova --os-tenant-name CPI"
-alias nova-software="nova --os-tenant-name Software"
-
 export AWS_CREDENTIALS_FILE=~/.aws-credentials
 export JAVA_HOME="$(/usr/libexec/java_home)"
-export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pk-*.pem | /usr/bin/head -1)"
-export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem | /usr/bin/head -1)"
+#export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pk-*.pem | /usr/bin/head -1)"
+#export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem | /usr/bin/head -1)"
 export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars"
 
 
 export HADOOP_HOME=/usr/local/opt/hadoop/libexec
 export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export HIVE_HOME=/usr/local/Cellar/hive/1.1.1/libexec
 export AKKA_HOME=/usr/local/Cellar/akka/2.3.9/libexec
 
 # export VAGRANT_DEFAULT_PROVIDER="vmware_fusion"
