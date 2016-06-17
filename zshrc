@@ -34,7 +34,7 @@ zstyle :omz:plugins:ssh-agent agent-forwarding on
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git git-extras cap ruby gem rails rbenv git-flow brew ssh-agent encode64 grails docker)
+plugins=(git git-extras cap ruby gem rails rbenv git-flow brew ssh-agent encode64 grails docker vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -55,18 +55,25 @@ source $ZSH/oh-my-zsh.sh
 # Vim
 stty -ixon
 
+# aws cli autocompletions
+source /usr/local/share/zsh/site-functions/_aws
+
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
 #THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
 [[ -s "/Users/brian.miller/.gvm/bin/gvm-init.sh" ]] && source "/Users/brian.miller/.gvm/bin/gvm-init.sh"
 
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+export JAVA_HOME=$(/usr/libexec/java_home)
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-source $(brew --prefix nvm)/nvm.sh
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
-eval `boot2docker shellinit 2>/dev/null`
+source $(brew --prefix nvm)/nvm.sh
 
 # added by travis gem
 [ -f /Users/brian.miller/.travis/travis.sh ] && source /Users/brian.miller/.travis/travis.sh
+
+# added by travis gem
+[ -f /Users/brian/.travis/travis.sh ] && source /Users/brian/.travis/travis.sh
