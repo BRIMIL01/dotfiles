@@ -2,14 +2,16 @@ PATH=$HOME/bin:/usr/local/sbin:/usr/local/bin:$PATH
 PATH=$PATH:/opt/local/dse-2.2.1/bin:/opt/local/opscenter-2.1.2/bin
 PATH=$PATH:$HOME/Library/Python/2.7/bin:/usr/local/share/npm/bin:$HOME/.jenv/bin
 PATH=$PATH:/Applications/VMware\ Fusion.app/Contents/Library:/Applications/VirtualBox.app/Contents/MacOS
+PATH=$PATH:/opt/spark-1.6.0/bin:/opt/spark-1.6.0/sbin
 
-export RBENV_ROOT="/usr/local/var/rbenv"
+export RBENV_ROOT=/usr/local/var/rbenv
+export PYENV_ROOT=/usr/local/var/pyenv
 export NVM_DIR="/Users/brian.miller/.nvm"
 
 export MANPATH=/usr/local/man:/opt/local/man:$MANPATH
 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-export RUBY_CONFIGURE_OPTS="--without-gcc --disable-install-rdoc"
+export RUBY_CONFIGURE_OPTS="--without-gcc --disable-install-rdoc --with-readline-dir=`brew --prefix readline`"
 
 export EDITOR="vim"
 export HOMEBREW_EDITOR="vim"
@@ -18,15 +20,12 @@ export BUNDLER_EDITOR="vim"
 
 export DSE_HOME="/opt/local/dse-2.2.1"
 
-export DOCKER_TLS_VERIFY=1
-export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=/Users/brian.miller/.boot2docker/certs/boot2docker-vm
-
 # Bundle aliases
 alias be='bundle exec'
 alias bec='echo "Two turntables and a microphone"; be cucumber'
 alias ber='be rspec --color'
-alias beg='be guard'
+alias berd='ber -f d'
+alias besr='be spring rspec --color'
 alias bei='be irb'
 alias gsb='for k in `git branch|perl -pe "s/^..//"`;do echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k|head -n 1`\\t$k;done|sort -r'
 
@@ -39,12 +38,12 @@ alias animals="curl -s http://animals.ivolo.me/"
 alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
 alias pull="git branch | grep \"*\" | sed \"s/* //\" | xargs -I '{}' git pull origin '{}':'{}' && fact"
 alias push="git branch | grep \"*\" | sed \"s/* //\" | xargs -I '{}' git push origin '{}':'{}' && fact"
-alias fetch="echo 'Good boy! Go get those branches!' && git fetch --all -p && animals"
+alias fetch="echo 'Good boy! Go get those branches!' && git fetch --all --tags -p && animals"
 alias brewhome="cd `brew --prefix`"
 alias dev="cd ~/Documents/Dev"
 alias gentags="ctags -R --exclude=.git --exclude=log * "
 
-alias tree="ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
+#alias tree="ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 
 alias h="hadoop"
 alias hf="hadoop fs"
@@ -63,15 +62,12 @@ alias nova-dist="nova --os-tenant-name IPT-coresvcs"
 alias nova-cpi="nova --os-tenant-name CPI"
 alias nova-software="nova --os-tenant-name Software"
 
-export AWS_CREDENTIALS_FILE=~/.aws-credentials
-export JAVA_HOME="$(/usr/libexec/java_home)"
-export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pk-*.pem | /usr/bin/head -1)"
-export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem | /usr/bin/head -1)"
-export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars"
-
+export JAVA_HOME=$(/usr/libexec/java_home)
 
 export HADOOP_HOME=/usr/local/opt/hadoop/libexec
 export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export HIVE_HOME=/usr/local/Cellar/hive/1.2.1/libexec
+export HCAT_HOME=/usr/local/Cellar/hive/1.2.1/libexec/hcatalog
 export AKKA_HOME=/usr/local/Cellar/akka/2.3.9/libexec
 
 # export VAGRANT_DEFAULT_PROVIDER="vmware_fusion"
@@ -138,7 +134,14 @@ function map_boot2docker() {
   done
 }
 
-source ~/.dotfiles/zshlocal
+function start_kafka() {
+  kafka-server-start /usr/local/etc/kafka/server.properties
+}
 
-# set_java8
+# https://coderwall.com/p/gxtehg/bundle-grep-1
+function bung () {
+  ag "$@" `bundle show --paths`
+}
+
+source ~/.zshlocal
 

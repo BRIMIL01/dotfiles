@@ -1,11 +1,12 @@
 [user]
 	name = Brian Miller
-	email = brian.miller@reachlocal.com
+	email = brian@acorns.com
 [color]
   ui = true
 [core]
-	excludesfile = /Users/brian.miller/.gitignore_global
+	excludesfile = /Users/brian/.gitignore_global
   autocrlf = input
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -18,3 +19,14 @@
   last = log -1 HEAD
   wip = !git stash save "wip: $(date)"
   l = log --graph --abbrev-commit --date=relative --pretty=format:\"%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset\"
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[push]
+	default = simple
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
