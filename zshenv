@@ -18,8 +18,6 @@ export HOMEBREW_EDITOR="vim"
 export GEM_EDITOR="vim"
 export BUNDLER_EDITOR="vim"
 
-export DSE_HOME="/opt/local/dse-2.2.1"
-
 # Bundle aliases
 alias be='bundle exec'
 alias bec='echo "Two turntables and a microphone"; be cucumber'
@@ -29,11 +27,6 @@ alias besr='be spring rspec --color'
 alias bei='be irb'
 alias gsb='for k in `git branch|perl -pe "s/^..//"`;do echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k|head -n 1`\\t$k;done|sort -r'
 
-alias z="zeus"
-alias ztr="z test spec"
-alias zc="z cucumber"
-
-#alias vi="/usr/local/bin/vim"
 alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
 alias pull="git branch | grep \"*\" | sed \"s/* //\" | xargs -I '{}' git pull origin '{}':'{}' && fact"
 alias push="git branch | grep \"*\" | sed \"s/* //\" | xargs -I '{}' git push origin '{}':'{}' && fact"
@@ -41,8 +34,10 @@ alias fetch="echo 'Good boy! Go get those branches!' && git fetch --all --tags -
 alias gs='git status'
 alias gd='git diff'
 alias brewhome="cd `brew --prefix`"
-alias dev="cd ~/Documents/Dev"
+alias dev="cd ~/code"
 alias gentags="ctags -R --exclude=.git --exclude=log * "
+alias ff="fzf --preview '[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || highlight -O ansi -l {} || rougify {} || cat {}) 2> /dev/null'"
+
 
 #alias tree="ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 
@@ -60,16 +55,6 @@ alias jenkins="java -jar /usr/local/opt/jenkins/libexec/jenkins.war"
 alias sonar_start="/usr/local/opt/sonar/bin/sonar console"
 
 export AWS_CREDENTIALS_FILE=~/.aws-credentials
-export JAVA_HOME="$(/usr/libexec/java_home)"
-#export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pk-*.pem | /usr/bin/head -1)"
-#export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem | /usr/bin/head -1)"
-export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars"
-
-alias nova-dist="nova --os-tenant-name IPT-coresvcs"
-alias nova-cpi="nova --os-tenant-name CPI"
-alias nova-software="nova --os-tenant-name Software"
-
-export JAVA_HOME=$(/usr/libexec/java_home)
 
 export HADOOP_HOME=/usr/local/opt/hadoop/libexec
 export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
@@ -79,6 +64,9 @@ export AKKA_HOME=/usr/local/Cellar/akka/2.3.9/libexec
 
 # export VAGRANT_DEFAULT_PROVIDER="vmware_fusion"
 export VAGRANT_DEFAULT_PROVIDER="virtualbox"
+export ASDF_GOLANG_MOD_VERSION_ENABLED=true
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
+
 
 unsetopt auto_name_dirs
 
@@ -91,32 +79,6 @@ function test_for_pull() {
   specs=`be rspec 2>&1 | grep -ve "^[.*F][.*F]" | tail -n 4`
   echo "Specs\n$specs\n"
   echo "$prev_tests\nCucumber\n\n\`\`\`\n$cukes\n\`\`\`\n\nSpecs\n\n\`\`\`\n$specs\n\`\`\`\n" | pbcopy
-}
-
-function osx_java_home() {
-  /usr/libexec/java_home
-}
-
-function set_java6() {
-  jenv shell 1.6
-}
-
-function set_java7() {
-  jenv shell 1.7
-}
-
-function set_java8() {
-  jenv shell 1.8
-}
-
-function start_cassandra() {
-  set_java7
-  cassandra -f
-}
-
-function start_dse() {
-  set_java6
-  /opt/local/dse-2.2.1/bin/dse cassandra -f
 }
 
 function test_capture_for_pull() {
@@ -140,6 +102,17 @@ function start_kafka() {
 # https://coderwall.com/p/gxtehg/bundle-grep-1
 function bung () {
   ag "$@" `bundle show --paths`
+}
+
+dcleanup(){
+  docker rm -v $(docker ps --filter status=exited -q 2>/dev/null) 2>/dev/null
+  docker rmi $(docker images --filter dangling=true -q 2>/dev/null) 2>/dev/null
+}
+
+dnuke() {
+  docker rm -v $(docker ps -aq)
+  docker rmi -f $(docker images -q)
+  docker volume rm $(docker volume ls -q)
 }
 
 source ~/.zshlocal
