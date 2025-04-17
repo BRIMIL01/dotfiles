@@ -1,18 +1,22 @@
 [user]
-	name = Brian Miller
-	email = brian@acorns.com
+  name = Brian Miller
+  email = brimil01@gmail.com
+  signingkey = D9C6403A
+[user "ssh://git@github.com/Acornsgrow"]
+  name = Brian Miller
+  email = brian@acorns.com
+  signingkey = E08E9E22
 [color]
   ui = true
 [core]
-	excludesfile = /Users/brian/.gitignore_global
+  excludesfile = /Users/brian/.gitignore_global
   autocrlf = input
-	pager = diff-so-fancy | less --tabs=4 -RFX
+  pager = diff-so-fancy | less --tabs=4 -RFX
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 [mergetool "sourcetree"]
-	cmd = /opt/homebrew-cask/Caskroom/sourcetree/1.9.3.1/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  cmd = /opt/homebrew-cask/Caskroom/sourcetree/1.9.3.1/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
 [github]
   user = BRIMIL01
 [alias]
@@ -20,13 +24,17 @@
   wip = !git stash save "wip: $(date)"
   l = log --graph --abbrev-commit --date=relative --pretty=format:\"%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset\"
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+  required = true
 [push]
-	default = simple
+  default = simple
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
+[commit]
+  gpgsign = true
+[init]
+  templatedir = ~/.git-templates

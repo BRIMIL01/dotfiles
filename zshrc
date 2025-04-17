@@ -8,8 +8,8 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="simple"
 
 # Example aliases
- alias zshconfig="vim ~/.zshrc"
- alias ohmyzsh="vim ~/.oh-my-zsh"
+alias zshconfig="vim ~/.zshrc"
+alias ohmyzsh="vim ~/.oh-my-zsh"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -29,12 +29,12 @@ ZSH_THEME="simple"
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
 
-zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_home id_rsa_vsa stacked_key tmuxme_rsa
-zstyle :omz:plugins:ssh-agent agent-forwarding on
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git git-extras cap ruby gem rails rbenv git-flow brew ssh-agent encode64 grails docker vi-mode)
+plugins=(git git-extras brew ssh-agent encode64 docker vi-mode)
+zstyle :omz:plugins:ssh-agent identities 'id_ed25519' 'id_rsa_csun' 'id_rsa_home' 'id_rsa_vsa' 'tmuxme_rsa' 'acorns/id_rsa' 'id_rsa_riot'
+zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 source $ZSH/oh-my-zsh.sh
 
@@ -55,25 +55,17 @@ source $ZSH/oh-my-zsh.sh
 # Vim
 stty -ixon
 
-# aws cli autocompletions
-source /usr/local/share/zsh/site-functions/_aws
-
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
-
-#THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
-[[ -s "/Users/brian.miller/.gvm/bin/gvm-init.sh" ]] && source "/Users/brian.miller/.gvm/bin/gvm-init.sh"
-
-if which jenv > /dev/null; then eval "$(jenv init -)"; fi
-export JAVA_HOME=$(/usr/libexec/java_home)
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-
-source $(brew --prefix nvm)/nvm.sh
-
-# added by travis gem
-[ -f /Users/brian.miller/.travis/travis.sh ] && source /Users/brian.miller/.travis/travis.sh
+export NVM_DIR=~/.nvm
+source /usr/local/opt/nvm/nvm.sh
 
 # added by travis gem
-[ -f /Users/brian/.travis/travis.sh ] && source /Users/brian/.travis/travis.sh
+[ -f /Users/bmiller/.travis/travis.sh ] && source /Users/bmiller/.travis/travis.sh
+
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/bmiller/.sdkman"
+[[ -s "/Users/bmiller/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/bmiller/.sdkman/bin/sdkman-init.sh"

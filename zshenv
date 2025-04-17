@@ -11,7 +11,7 @@ export NVM_DIR="/Users/brian.miller/.nvm"
 export MANPATH=/usr/local/man:/opt/local/man:/usr/local/opt/erlang/lib/erlang/man:$MANPATH
 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-export RUBY_CONFIGURE_OPTS="--without-gcc --disable-install-rdoc --with-readline-dir=`brew --prefix readline`"
+# export RUBY_CONFIGURE_OPTS="--without-gcc --disable-install-rdoc --with-readline-dir=`brew --prefix readline`"
 
 export EDITOR="vim"
 export HOMEBREW_EDITOR="vim"
@@ -34,11 +34,12 @@ alias ztr="z test spec"
 alias zc="z cucumber"
 
 #alias vi="/usr/local/bin/vim"
-alias animals="curl -s http://animals.ivolo.me/"
 alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
 alias pull="git branch | grep \"*\" | sed \"s/* //\" | xargs -I '{}' git pull origin '{}':'{}' && fact"
 alias push="git branch | grep \"*\" | sed \"s/* //\" | xargs -I '{}' git push origin '{}':'{}' && fact"
-alias fetch="echo 'Good boy! Go get those branches!' && git fetch --all --tags -p && animals"
+alias fetch="echo 'Good boy! Go get those branches!' && git fetch --all --tags -p"
+alias gs='git status'
+alias gd='git diff'
 alias brewhome="cd `brew --prefix`"
 alias dev="cd ~/Documents/Dev"
 alias gentags="ctags -R --exclude=.git --exclude=log * "
@@ -130,14 +131,6 @@ function build_changelog() {
 
 function cow_norris() {
   curl -s http://api.icndb.com/jokes/random | ruby -e "require 'json'; require 'cgi'; puts \"http://cowsay.morecode.org/say?format=text&message=#{CGI.escape(JSON.parse(gets)['value']['joke'])}\"" | xargs curl
-}
-
-function map_boot2docker() {
-  # vm must be powered off
-  for i in {49000..49900}; do
-   VBoxManage modifyvm "boot2docker-vm" --natpf1 "tcp-port$i,tcp,,$i,,$i";
-   VBoxManage modifyvm "boot2docker-vm" --natpf1 "udp-port$i,udp,,$i,,$i";
-  done
 }
 
 function start_kafka() {

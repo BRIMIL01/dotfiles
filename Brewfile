@@ -1,85 +1,92 @@
-brew tap homebrew/dupes
-brew install git
-brew install git-extras
-brew install gist
-brew install vim
-brew install zsh
-brew install openssl
-brew install wget
-brew install redis
-brew install mysql
-brew install postgresql
-brew install cassandra
-brew install solr
-brew install activemq
-brew install rabbitmq
-brew install ack
-brew install elinks
-brew install erlang
-brew install ffmpeg
-brew install imagemagick
-brew install rbenv
-brew install ruby-build
-brew install phantomjs
-brew install nmap
-brew install maven
-brew install tmux
-brew install reattach-to-user-namespace
-brew install tomcat
-brew install jetty
-brew install seige
-brew install node
-brew install nvm
-brew install jenv
-brew install scala
-brew install pwgen
-brew install dnsmasq
-brew install docker
-brew install sqlite3
-
-brew install hadoop
-brew install hive
-brew install pig
-brew install sqoop
-brew install zookeeper
-brew install avro-tools
-brew install apache-spark
-
-brew install brew-cask
-brew cask install java
-brew cask install caskroom/homebrew-versions/java6
-brew cask install dropbox
-brew cask install sublime-text
-brew cask install navicat-premium
-brew cask install sourcetree
-brew cask install omnigraffle
-brew cask install skype
-brew cask install adium
-brew cask install firefox
-brew cask install things
-brew cask install tower
-brew cask install vmware-fusion
-brew cask install wireshark
-brew cask install vagrant
-brew cask install virtualbox
-brew cask install transmit
-brew cask install marked
-brew cask install iterm2
-brew cask install istat-menus
-brew cask install intellij-idea
-brew cask install google-chrome
-brew cask install google-drive
-brew cask install google-hangouts
-brew cask install flux
-brew cask install fantastical
-brew cask install alfred
-brew cask install apache-directory-studio
-brew cask install amazon-cloud-drive
-brew cask install screenhero
-brew cask install tower
-brew cask install rdm
-brew cask install slack
-brew cask install cloudfoundry-cli
-brew cask install github
-brew cask install arq
-brew cask install gpgtools
+tap "homebrew/cask-versions"
+tap "homebrew/dupes"
+tap "homebrew/php"
+tap "homebrew/services"
+tap "homebrew/versions"
+tap "neovim/neovim"
+tap "uptech/oss"
+brew "ack"
+brew "gettext"
+brew "lzo"
+brew "xz"
+brew "openjdk"
+brew "activemq"
+brew "aws-elasticbeanstalk"
+brew "awscli"
+brew "boost"
+brew "cmake"
+brew "libssh2"
+brew "composer"
+brew "ctags"
+brew "libusb-compat"
+brew "dfu-programmer"
+brew "dfu-util"
+brew "diff-so-fancy"
+brew "libassuan"
+brew "libksba"
+brew "pth"
+brew "dirmngr"
+brew "docker-cloud"
+brew "elinks"
+brew "elixir"
+brew "faac"
+brew "libevent"
+brew "x264"
+brew "ffmpeg"
+brew "gcc"
+brew "geos"
+brew "gist"
+brew "git"
+brew "git-extras"
+brew "gnupg", link: false
+brew "go"
+brew "gpg-agent"
+brew "hadoop"
+brew "hive"
+brew "httpd"
+brew "hydra"
+brew "ivy"
+brew "jenv"
+brew "kafka"
+brew "libdvdcss"
+brew "libvo-aacenc"
+brew "libxml2"
+brew "makedepend"
+brew "memcached", restart_service: :changed
+brew "utf8proc"
+brew "neovim", args: ["HEAD"]
+brew "node"
+brew "nvm"
+brew "pandoc"
+brew "plantuml"
+brew "postgresql@14"
+brew "postgresql@9.5"
+brew "predictionio"
+brew "pwgen"
+brew "pyenv"
+brew "rabbitmq"
+brew "ruby-build"
+brew "rbenv"
+brew "redis", restart_service: :changed
+brew "rust"
+brew "sbt"
+brew "scala"
+brew "sphinx-doc", link: false
+brew "texi2html"
+brew "the_silver_searcher"
+brew "tmux"
+brew "tree"
+brew "v8"
+brew "vim"
+brew "wget"
+brew "yasm"
+brew "uptech/oss/alt"
+cask "coverload"
+cask "crosspack-avr"
+cask "keepassx"
+cask "kid3"
+cask "marked"
+cask "metaz"
+cask "skype"
+cask "transmit"
+cask "vagrant"
